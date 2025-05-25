@@ -28,3 +28,4 @@ ENV PATH /opt/conda/envs/pollution_env/bin:$PATH
 # Copy semua file project MLflow Anda
 COPY . .
 
+CMD ["mlflow", "run", ".", "--entry-point", "main"]
