@@ -54,16 +54,17 @@ jobs:
           MLFLOW_TRACKING_URI: ${{ secrets.MLFLOW_TRACKING_URI }}
           MLFLOW_TRACKING_USERNAME: ${{ secrets.MLFLOW_TRACKING_USERNAME }}
           MLFLOW_TRACKING_PASSWORD: ${{ secrets.MLFLOW_TRACKING_PASSWORD }}
-
+          
       - name: Create Tag
         id: tag
         run: |
           TAG="v$(date +'%Y%m%d%H%M%S')"
           git tag $TAG
           git push origin $TAG
+          echo "TAG=$TAG" >> $GITHUB_OUTPUT
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
+  
       - name: Create GitHub Release and upload model artifact
         uses: softprops/action-gh-release@v1
         with:
@@ -71,4 +72,5 @@ jobs:
           tag_name: ${{ steps.tag.outputs.TAG }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
     
