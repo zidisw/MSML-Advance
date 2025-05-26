@@ -10,7 +10,7 @@ def main(data_path):
     mlflow.set_experiment("pollution-classifier")  
 
     # Aktifkan autolog untuk rekam otomatis parameter, metrik, model
-    mlflow.sklearn.autolog()
+    mlflow.sklearn.autolog() # type: ignore
 
     # Load dataset
     df = pd.read_csv(data_path)
