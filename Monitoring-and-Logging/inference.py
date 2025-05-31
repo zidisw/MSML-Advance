@@ -6,7 +6,7 @@ import time
 import psutil
 
 app = Flask(__name__)
-model = joblib.load('./Monitoring and Logging/model.pkl')
+model = joblib.load('model.pkl')
 
 # Metrik Prometheus
 request_count = Counter('model_requests_total', 'Total permintaan')
